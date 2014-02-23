@@ -1,79 +1,215 @@
 <!DOCTYPE html>
 <html>
+<head>
+	<title>XVI Themes</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="William Gaul">
+	<script src="vein.min.js"></script>
+	<script src="color.min.js"></script>
+	<script src="jquery-1.11.0.min.js"></script>
+	<script src="jquery.kwicks.min.js"></script>
+	<script src="jquery.menu-aim.min.js"></script>
 
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Xvi-themes : Show that HTML and CSS who&#39;s boss" />
+	<script src="themes.js"></script>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+	<style type="text/css">
+		/* http://blog.stevensanderson.com/2011/10/05/full-height-app-layouts-a-css-trick-to-make-it-easier/ */
 
-    <title>Xvi-themes</title>
-  </head>
+		body {
+			margin: 0;
+		}
+		.page {
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+		}
+		.row, .col, .page {
+			overflow: hidden;
+			position: absolute;
+		}
+		.row {
+			left: 0;
+			right: 0;
+		}
+		.col {
+			top: 0;
+			bottom: 0;
+		}
+		.scroll-x { overflow-x: auto; }
+		.scroll-y { overflow-y: auto; }
 
-  <body>
+		/* Pane configuration */
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/willyg302/XVI-Themes">View on GitHub</a>
+		.left.col {
+			width: 250px;
+		}
+		.right.col {
+			left: 250px;
+			right: 0;
+		}
+		.header.row {
+			height: 75px;
+		}
+		.body.row {
+			top: 95px;
+			bottom: 0;
+		}
+		.header {
+			padding: 10px;
+		}
 
-          <h1 id="project_title">Xvi-themes</h1>
-          <h2 id="project_tagline">Show that HTML and CSS who&#39;s boss</h2>
+		/* Other CSS */
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/willyg302/XVI-Themes/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/willyg302/XVI-Themes/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
+		body {
+			font-family: monospace;
+		}
+		ul.schemes {
+			list-style-type: none;
+			line-height: 2;
+			font-size: 24px;
+			margin: 0;
+			padding: 0;
+		}
+		li {
+			padding-left: 10px;
+		}
+		li.active {
+			background-color: #eeeeee;
+		}
+		p {
+			margin: 0;
+		}
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+		#desc, .kwicks > div > div {
+			background-color: white;
+			margin: 10px;
+			padding: 10px;
+			box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+		}
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+		#desc {
+			position: absolute;
+			bottom: 0;
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+			width: -webkit-calc(100% - 20px);
+			width: -moz-calc(100% - 20px);
+			width: calc(100% - 20px);
+		}
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+		/* From kwicks CSS source */
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+		.kwicks {
+			display: block;
+			margin: 0;
+			padding: 0;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+		.kwicks > * {
+			overflow: hidden;
+			padding: 0;
+			margin: 0;
+		}
+		.kwicks.kwicks-processed > * {
+			margin: 0;
+			position: absolute;
+		}
+		.kwicks-horizontal > * {
+			float: left;
+		}
+		.kwicks-horizontal > :first-child {
+			margin-left: 0;
+		}
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+		/* Custom kwicks definitions */
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+		.kwicks > div {
+			height: 100%;
+		}
+		.kwicks > div > div {
+			white-space: nowrap;
+			overflow: hidden;
+		}
+		.kwicks > div.kwicks-collapsed > div, .kwicks > div > div {
+			visibility: hidden;
+		}
+		.kwicks > div.kwicks-expanded > div {
+			visibility: visible;
+		}
+	</style>
+	<script type="text/javascript">
+		function setupThemeDiv() {
+			var parent = $('.kwicks');
+			for (var i = 0; i < 16; i++) {
+				var desc = $('<div/>');
+				$.each(['name', 'hex', 'rgb', 'hsl'], function(index, value) {
+					desc.append($('<p>').attr('id', value));
+				});
+				$('<div/>', {id: "block" + i}).append(desc).appendTo(parent);
+			}
+		}
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Xvi-themes maintained by <a href="https://github.com/willyg302">willyg302</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
-  </body>
+		function activateTheme(row) {
+			var self = $(row),
+				theme = themes[self.data('ref')];
+			var prev = $('.active');
+			if (prev) {
+				prev.toggleClass('active');
+			}
+			$('#desc').html("<h1>" + theme.name + " <small>by " + theme.author + "</small></h1>");
+			self.toggleClass('active');
+			for (var i = 0; i < 16; i++) {
+				var color = Color(theme.colors[i]);
+				vein.inject("#block" + i, {'background-color': color.hexString()});
+				var block = $("#block" + i);
+				block.find('p#name').html();
+				block.find('p#hex').html(color.hexString());
+				block.find('p#rgb').html(color.rgbString());
+				block.find('p#hsl').html(color.hslString());
+			}
+		}
+	</script>
+</head>
+<body>
+	<div class="left col">
+		<div class="header row">
+			<img src="http://placehold.it/230x75&text=Logo">
+		</div>
+		<div class="body row scroll-y">
+			<ul class="schemes"></ul>
+		</div>
+	</div>
+	<div class="right col">
+		<div class="kwicks kwicks-horizontal"></div>
+		<div id="desc"></div>
+	</div>
+	<script type='text/javascript'>
+		setupThemeDiv();
+		$.each(themes, function(key, value) {
+			$('<li/>').html(value.name).data('ref', key).appendTo($('.schemes'));
+		});
+		$('.schemes').menuAim({
+			activate: activateTheme
+		});
+		$().ready(function() {
+			$('.kwicks').kwicks({
+				maxSize: '25%',
+				behavior: 'menu',
+				spacing: 0,
+				duration: 250,
+				deselectOnClick: true
+			});
+			$('li').first().mouseover();
+		});
+	</script>
+</body>
 </html>
